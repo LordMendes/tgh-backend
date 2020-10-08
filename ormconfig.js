@@ -1,17 +1,19 @@
-module.exports = {
-  "type": "postgres",
-  "url": process.env.DATABASE_URL,
-  "entities": [
-    "dist/models/*.ts"
+  module.exports = {
+    "type": "postgres",
+    "url": process.env.DATABASE_URL,
+    "entities": [
+      "dist/models/*.js"
+   ],
+   "migrations": [
+    "dist/database/migrations/**/*.js"
   ],
-  "migrations": [
-    "dist/database/migrations/*.ts"
-  ],
-  "cli":{
-    "migrationsDir": ["./src/database/migrations"],
-    "entitiesDir": "./src/models"
+   "cli":{
+    "migrationsDir": [
+      "src/database/migrations/"
+    ],
+    "entitiesDir": "src/models"
+    }
   }
-}
 
 // module.exports = {
 //   "type": "postgres",

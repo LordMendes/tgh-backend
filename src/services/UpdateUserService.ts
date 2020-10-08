@@ -39,11 +39,9 @@ class UpdateUserService {
       throw new Error('User/Email already exists');
     }
 
-    const hashedPassword = await hash(password, 8);
-
     const user = userRepository.create({
       username,
-      password: hashedPassword,
+      password,
       name,
       email,
     });

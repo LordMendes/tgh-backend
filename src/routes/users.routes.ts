@@ -43,7 +43,7 @@ userRouter.get('/:id', async (request, response) => {
   const { id } = request.params;
 
   const userRepository = getRepository(User);
-  const user = await userRepository.findOne({ where: {} });
+  const user = await userRepository.findOne({ where: { id } });
 
   return response.status(201).json(user);
 });

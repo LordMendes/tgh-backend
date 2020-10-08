@@ -1,6 +1,7 @@
- {
+  console.log("process.env.DATABASE_URL >>> ", process.env.DATABASE_URL)
+  module.exports = {
     "type": "postgres",
-    "url": postgres://ucqgbyyjzjldam:b33c4d8bc64a09c8e8da1657ddcc526ab4da316719db55b13ef4a034a7587590@ec2-54-160-18-230.compute-1.amazonaws.com:5432/d830eh6ig5n25h,
+    "url": process.env.DATABASE_URL,
     "entities": [
       "dist/models/**/*.js"
    ],

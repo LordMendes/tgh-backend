@@ -5,6 +5,7 @@ import routes from './routes';
 import './database';
 
 const app = express();
+const PORT : string|number = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(routes);

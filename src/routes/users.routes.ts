@@ -45,8 +45,6 @@ userRouter.get('/:id', async (request, response) => {
   const userRepository = getRepository(User);
   const user = await userRepository.findOne({ where: {} });
 
-  delete user.password;
-
   return response.status(201).json(user);
 });
 

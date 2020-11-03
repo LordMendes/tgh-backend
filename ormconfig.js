@@ -2,6 +2,8 @@
   module.exports = {
     "type": "postgres",
     "url": process.env.DATABASE_URL,
+
+  //  PROD
     "entities": [
       "dist/models/**/*.js"
    ],
@@ -14,18 +16,15 @@
     ],
     "entitiesDir": "src/models"
     }
-  }
 
-// module.exports = {
-//   "type": "postgres",
-//   "url": process.env.DATABASE_URL,
-//   "entities": [
-//     "./src/models/*.ts"
-//   ],
-//   "migrations": [
-//     "./src/database/migrations/*.ts"
-//   ],
-//   "cli":{
-//     "migrationsDir": "./src/database/migrations"
-//   }
-// }
+  // DEV
+  // "entities": [
+  //   "./src/models/*.ts"
+  // ],
+  // "migrations": [
+  //   "./src/database/migrations/*.ts"
+  // ],
+  // "cli":{
+  //   "migrationsDir": "./src/database/migrations"
+  // }
+  }

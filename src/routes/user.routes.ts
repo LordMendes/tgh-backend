@@ -40,12 +40,19 @@ userRouter.get('/', async (request, response) => {
 
 // Get User
 userRouter.get('/:id', async (request, response) => {
-  const { id } = request.params;
+  try {
+    const { id } = request.params;
+    const userRepository = getRepository(User);
+    const user = await userRepository.findOne({ where: { id } });
+    if (user) {
+      delete user.password;
 
-  const userRepository = getRepository(User);
-  const user = await userRepository.findOne({ where: { id } });
-
-  return response.status(201).json(user);
+      return response.status(201).json(user);
+    }
+    return response.status(404).json({ Error: 'User not found' });
+  } catch (err) {
+    return response.json({ error: err.message });
+  }
 });
 
 // Update User
@@ -71,20 +78,30 @@ userRouter.put('/:id', async (request, response) => {
 
 // Delete User
 userRouter.delete('/:id', async (request, response) => {
-  const { id } = request.params;
+  try {
+    const { id } = request.params;
+    const usersRepository = getRepository(User);
 
-  const usersRepository = getRepository(User);
+    const userExists = await usersRepository.findOne(id);
 
-  const userExists = await usersRepository.findOne(id);
+    if (!userExists) {
+      throw Error("User doesn't exist");
+    }
 
-  if (!userExists) {
-    throw Error("User doesn't exist");
+    usersRepository.remove(userExists);
+
+    return response
+      .status(201)
+      .json({ message: `User ${userExists.id} removed` });
+  } catch (err) {
+    return response.json({ error: err.message });
   }
-
-  usersRepository.remove(userExists);
-
-  return response
-    .status(201)
-    .json({ message: `User ${userExists.id} removed` });
 });
+
+// //Get Character
+// userRouter.get('/:id/chracters', async (request, response) => {
+//   const {id} = request.params;
+
+//   const userRepository = getRepository(User);
+// })
 export default userRouter;

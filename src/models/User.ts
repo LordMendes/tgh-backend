@@ -17,7 +17,7 @@ class User {
   username: string;
 
   @Column()
-  password: string;
+  password?: string;
 
   @Column()
   name: string;

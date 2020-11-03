@@ -17,6 +17,9 @@ class Guild {
   name: string;
 
   @Column()
+  world: string;
+
+  @Column()
   whatsapp: string;
 
   @Column()

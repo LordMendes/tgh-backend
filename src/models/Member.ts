@@ -8,8 +8,8 @@ import {
   ManyToOne,
 } from 'typeorm';
 
-import User from './User';
 import Guild from './Guild';
+import User from './User';
 
 @Entity('members')
 class Member {
@@ -20,7 +20,10 @@ class Member {
   job: string;
 
   @Column()
-  privilege: boolean;
+  privilege: string;
+
+  @Column()
+  accepted: boolean;
 
   @OneToOne(() => User)
   @JoinColumn({ name: 'user_id' })

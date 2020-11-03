@@ -1,22 +1,19 @@
 import { Router } from 'express';
-import { getRepository } from 'typeorm';
 
 import CreateMemberService from '../services/CreateMemberService';
-
-import Member from '../models/Member';
 
 const memberRouter = Router();
 
 // Create Membership
 memberRouter.post('/', async (request, response) => {
   try {
-    const { job, privilege, guildId, memberId } = request.body;
+    const { job, privilege, guildId, userId } = request.body;
 
     const createMember = new CreateMemberService();
 
     const member = await createMember.execute({
       job,
-      memberId,
+      userId,
       privilege,
       guildId,
       accepted: false,
